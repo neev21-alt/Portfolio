@@ -1,123 +1,589 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Neev Savla | Frontend & Java Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neev Savla — Frontend & Java Developer | Mumbai</title>
+  <meta name="description"
+    content="Neev Savla — Cyber Security Engineering student at SAKEC Mumbai. Frontend & Java Developer building clean interfaces, secure systems, and scalable applications. Open to internships." />
+  <meta name="author" content="Neev Savla" />
+  <meta name="keywords"
+    content="Neev Savla, Frontend Developer, Java Developer, Cyber Security, SAKEC, Mumbai, Portfolio, Internship" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Neev Savla — Frontend & Java Developer" />
+  <meta property="og:description"
+    content="Cyber Security Engineering student building clean interfaces, secure systems & scalable apps. Open to internships." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://neev21-alt.github.io/Portfolio/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Neev Savla — Frontend & Java Developer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/svg+xml" href="download.svg">
 </head>
+
 <body>
 
-<nav class="nav">
-  <h2 class="logo">Neev Savla</h2>
-  <div class="nav-links">
-    <a href="#projects">Projects</a>
-    <a href="https://github.com/neev21-alt" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank">LinkedIn</a>
-  </div>
-</nav>
+  <!-- Custom cursor -->
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
 
-<header class="hero">
-  <span class="badge">Open to Internships</span>
-  <h1>
-    Frontend & Java Developer<br />
-    <span class="highlight">Building clean, scalable interfaces</span>
-  </h1>
-  <p>
-    I design and build responsive web interfaces and Java-based applications
-    with a strong focus on usability, performance, and clean code.
-  </p>
+  <!-- Gradient blobs -->
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
 
-  <div class="hero-actions">
-    <a href="#projects" class="primary-btn">View Projects</a>
-    <a href="https://github.com/neev21-alt" target="_blank" class="secondary-btn">GitHub</a>
-    <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank" class="secondary-btn">LinkedIn</a>
-  </div>
-</header>
+  <!-- Scroll progress -->
+  <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
-<section class="section">
-  <h2>Professional Summary</h2>
-  <p class="summary">
-    Cyber Security Engineering undergraduate with hands-on experience in
-    Java Swing, JDBC, MySQL, and frontend web development. Built real-world
-    desktop and web applications focusing on clean UI, database connectivity,
-    and CRUD operations.
-  </p>
-</section>
+  <!-- Back to top -->
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<section class="section">
-  <h2>Technical Skills</h2>
-  <div class="skills">
-    <div class="card">
-      <h4>Frontend</h4>
-      <p>HTML • CSS • JavaScript • Responsive Design</p>
+  <!-- ══════════════ NAVIGATION ══════════════ -->
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <span class="gr">Neev</span><span class="dim"> Savla</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="card">
-      <h4>Java & Database</h4>
-      <p>Java • Java Swing • JDBC • MySQL • SQL</p>
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <a href="#about"      onclick="closeDrawer()">About</a>
+      <a href="#skills"     onclick="closeDrawer()">Skills</a>
+      <a href="#projects"   onclick="closeDrawer()">Projects</a>
+      <a href="#experience" onclick="closeDrawer()">Experience</a>
+      <a href="#education"  onclick="closeDrawer()">Education</a>
+      <a href="#contact"    onclick="closeDrawer()">Contact</a>
     </div>
-    <div class="card">
-      <h4>Tools</h4>
-      <p>GitHub • WordPress • Canva</p>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <div class="container">
+    <section class="hero" id="home">
+      <div>
+        <div class="hero-tag">
+          <span class="dot-live"></span>
+          Available for Internships · Mumbai, India
+        </div>
+
+        <div class="hero-eyebrow">Frontend & Java Developer</div>
+
+        <h1>
+          Neev<br><span class="line-2"><span class="gradient-text">Savla</span></span>
+        </h1>
+
+        <p class="hero-desc">
+          <strong>Cyber Security Engineering student at SAKEC.</strong>
+          Building clean interfaces, secure desktop systems, and scalable applications —
+          with a focus on code quality from day one.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View My Work →</a>
+          <a href="resume.html" target="_blank" target="_blank" class="btn-ghost">Resume ↗</a>
+          <a href="https://github.com/neev21-alt" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub
+            ↗</a>
+          <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank" rel="noopener noreferrer"
+            class="btn-ghost">LinkedIn ↗</a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-val" data-count="9.2" data-suffix="">9.2</div>
+            <div class="stat-label">CGPA</div>
+          </div>
+          <div>
+            <div class="stat-val" data-count="4" data-suffix="+">4+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="stat-val" data-count="92.5" data-suffix="%">92.5%</div>
+            <div class="stat-label">IIT Bombay C Score</div>
+          </div>
+          <div>
+            <div class="stat-val" data-count="2025" data-suffix="">2025</div>
+            <div class="stat-label">Intern Experience</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════ SKILL MARQUEE ══════════════ -->
+  <div class="marquee-section" aria-label="Skills">
+    <div class="marquee-wrap">
+      <div class="marquee-track" aria-hidden="true">
+        <span class="marquee-item">HTML5 <span class="marquee-sep"></span></span>
+        <span class="marquee-item">CSS3 <span class="marquee-sep"></span></span>
+        <span class="marquee-item">JavaScript <span class="marquee-sep"></span></span>
+        <span class="marquee-item">TypeScript <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Responsive Design <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Java <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Java Swing <span class="marquee-sep"></span></span>
+        <span class="marquee-item">JDBC <span class="marquee-sep"></span></span>
+        <span class="marquee-item">OOP <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Node.js <span class="marquee-sep"></span></span>
+        <span class="marquee-item">REST APIs <span class="marquee-sep"></span></span>
+        <span class="marquee-item">MySQL <span class="marquee-sep"></span></span>
+        <span class="marquee-item">SQL <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Python <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Async Processing <span class="marquee-sep"></span></span>
+        <span class="marquee-item">C Programming <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Cyber Security <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Network Security <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Secure Auth <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Git &amp; GitHub <span class="marquee-sep"></span></span>
+        <span class="marquee-item">WordPress <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Canva <span class="marquee-sep"></span></span>
+        <!-- duplicate for seamless loop -->
+        <span class="marquee-item">HTML5 <span class="marquee-sep"></span></span>
+        <span class="marquee-item">CSS3 <span class="marquee-sep"></span></span>
+        <span class="marquee-item">JavaScript <span class="marquee-sep"></span></span>
+        <span class="marquee-item">TypeScript <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Responsive Design <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Java <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Java Swing <span class="marquee-sep"></span></span>
+        <span class="marquee-item">JDBC <span class="marquee-sep"></span></span>
+        <span class="marquee-item">OOP <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Node.js <span class="marquee-sep"></span></span>
+        <span class="marquee-item">REST APIs <span class="marquee-sep"></span></span>
+        <span class="marquee-item">MySQL <span class="marquee-sep"></span></span>
+        <span class="marquee-item">SQL <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Python <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Async Processing <span class="marquee-sep"></span></span>
+        <span class="marquee-item">C Programming <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Cyber Security <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Network Security <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Secure Auth <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Git &amp; GitHub <span class="marquee-sep"></span></span>
+        <span class="marquee-item">WordPress <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Canva <span class="marquee-sep"></span></span>
+      </div>
     </div>
   </div>
-</section>
 
-<section class="section">
-  <h2>Experience</h2>
-  <div class="card">
-    <h3>Frontend Developer Intern — CodeSprint Tech</h3>
-    <span>2025</span>
-    <ul>
-      <li>Built responsive web pages using HTML, CSS, and JavaScript</li>
-      <li>Implemented interactive UI components for better usability</li>
-      <li>Deployed projects using GitHub and followed version control practices</li>
-      <li>Worked on 4+ real-world frontend projects</li>
-    </ul>
+  <!-- ══════════════ SKILLS ══════════════ -->
+  <div class="container" id="skills">
+    <section>
+      <div class="reveal">
+        <div class="sec-eye">Skills</div>
+        <div class="sec-head">What I <span>work with</span></div>
+      </div>
+      <div class="sk-grid stagger reveal">
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">🖥️</div>
+          <div class="sk-cat">Frontend</div>
+          <div class="sk-chips">
+            <span class="sk-chip">HTML5</span>
+            <span class="sk-chip">CSS3</span>
+            <span class="sk-chip">JavaScript</span>
+            <span class="sk-chip">Responsive Design</span>
+            <span class="sk-chip">UI Components</span>
+            <span class="sk-chip">WordPress</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">☕</div>
+          <div class="sk-cat">Java &amp; Desktop</div>
+          <div class="sk-chips">
+            <span class="sk-chip">Java</span>
+            <span class="sk-chip">Java Swing</span>
+            <span class="sk-chip">JDBC</span>
+            <span class="sk-chip">OOP</span>
+            <span class="sk-chip">Secure Auth</span>
+            <span class="sk-chip">Desktop Apps</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">⚡</div>
+          <div class="sk-cat">Backend &amp; APIs</div>
+          <div class="sk-chips">
+            <span class="sk-chip">TypeScript</span>
+            <span class="sk-chip">Node.js</span>
+            <span class="sk-chip">Express.js</span>
+            <span class="sk-chip">REST APIs</span>
+            <span class="sk-chip">Middleware</span>
+            <span class="sk-chip">JSON</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">🗄️</div>
+          <div class="sk-cat">Database</div>
+          <div class="sk-chips">
+            <span class="sk-chip">MySQL</span>
+            <span class="sk-chip">SQL</span>
+            <span class="sk-chip">CRUD Operations</span>
+            <span class="sk-chip">Schema Design</span>
+            <span class="sk-chip">Queries</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">🔐</div>
+          <div class="sk-cat">Security</div>
+          <div class="sk-chips">
+            <span class="sk-chip">Cyber Security</span>
+            <span class="sk-chip">Network Security</span>
+            <span class="sk-chip">Ethical Hacking</span>
+            <span class="sk-chip">Secure Login</span>
+            <span class="sk-chip">CyberPeace Certified</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">🐍</div>
+          <div class="sk-cat">Python &amp; Scripting</div>
+          <div class="sk-chips">
+            <span class="sk-chip">Python</span>
+            <span class="sk-chip">Async Processing</span>
+            <span class="sk-chip">CLI Tools</span>
+            <span class="sk-chip">Structured Logging</span>
+            <span class="sk-chip">Test Suites</span>
+            <span class="sk-chip">JSON Config</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">💻</div>
+          <div class="sk-cat">Languages</div>
+          <div class="sk-chips">
+            <span class="sk-chip">JavaScript</span>
+            <span class="sk-chip">TypeScript</span>
+            <span class="sk-chip">Java</span>
+            <span class="sk-chip">Python</span>
+            <span class="sk-chip">C</span>
+            <span class="sk-chip">SQL</span>
+          </div>
+        </div>
+
+        <div class="card sk-card tilt">
+          <div class="sk-icon">🛠️</div>
+          <div class="sk-cat">Tools &amp; Workflow</div>
+          <div class="sk-chips">
+            <span class="sk-chip">Git</span>
+            <span class="sk-chip">GitHub</span>
+            <span class="sk-chip">VS Code</span>
+            <span class="sk-chip">npm</span>
+            <span class="sk-chip">Canva</span>
+            <span class="sk-chip">WordPress</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </div>
-</section>
 
-<section id="projects" class="section">
-  <h2>Projects</h2>
+  <div class="divider"></div>
 
-  <div class="card">
-    <h3>Personal Portfolio Website</h3>
-    <p class="impact">HTML • CSS • JavaScript</p>
-    <p>
-      Designed and developed a modern, responsive portfolio website
-      to showcase skills, experience, and projects in a professional format.
-    </p>
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <div class="container" id="about">
+    <section>
+      <div class="reveal">
+        <div class="sec-eye">About</div>
+        <div class="sec-head">Who I <span>am</span></div>
+      </div>
+      <div class="about-wrapper reveal">
+        <div class="card about-main tilt">
+          <p class="about-text">
+            I'm a <strong>Second-year Cyber Security Engineering student</strong> at Shah &amp; Anchor Kutchhi
+            Engineering College, Mumbai — with a <span class="h">CGPA of 9.2</span> and hands-on project
+            experience from day one. I build across the stack: <strong>clean, responsive web interfaces</strong>
+            with HTML, CSS &amp; JavaScript, and <strong>secure Java desktop applications</strong> backed by real MySQL databases.
+          </p>
+          <p class="about-text">
+            Passionate about <span class="h">ethical hacking, web development, and innovative design</span> —
+            I aim to contribute to a safer, smarter, and more user-friendly digital world.
+            In 2025 I completed a <span class="h">frontend internship</span> at CodeSprint Tech, shipping 4+ projects.
+            I'm actively seeking my next internship where I can contribute meaningfully from week one.
+          </p>
+          <div class="interests-strip">
+            <span class="int-chip">⚡ Ethical Hacking</span>
+            <span class="int-chip">🌐 Web Development</span>
+            <span class="int-chip">📡 Smart Technology &amp; IoT</span>
+            <span class="int-chip">🎨 Digital Content Creation</span>
+            <span class="int-chip">🔐 Cyber Security</span>
+            <span class="int-chip">🐍 Programming &amp; Scripting</span>
+          </div>
+        </div>
+        <div class="about-info">
+          <div class="card info-tile tilt">
+            <div class="info-label">Location</div>
+            <div class="info-value">Mumbai, India 🇮🇳</div>
+          </div>
+          <div class="card info-tile tilt">
+            <div class="info-label">Degree</div>
+            <div class="info-value">B.Tech — Cyber Security</div>
+          </div>
+          <div class="card info-tile tilt">
+            <div class="info-label">Graduation</div>
+            <div class="info-value">2028</div>
+          </div>
+          <div class="card info-tile tilt">
+            <div class="info-label">Status</div>
+            <div class="info-value"><span class="pill">Open to internships</span></div>
+          </div>
+          <div class="card info-tile tilt">
+            <div class="info-label">Certified</div>
+            <div class="info-value"><span class="pill-accent pill">CyberPeace 2025</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="card">
-    <h3>Secure Student Management System</h3>
-    <p class="impact">Java • Swing • JDBC • MySQL</p>
-    <p>
-      Built a Java Swing application to manage student records with
-      secure login, CRUD operations, and database connectivity using JDBC.
-    </p>
+  <div class="divider"></div>
+
+  <!-- ══════════════ PROJECTS ══════════════ -->
+  <div class="container" id="projects">
+    <section>
+      <div class="reveal">
+        <div class="sec-eye">Projects</div>
+        <div class="sec-head">Things I've <span>built</span></div>
+      </div>
+
+      <div class="proj-grid stagger reveal">
+
+        <!-- Featured -->
+        <div class="card proj-card featured tilt">
+          <div class="proj-num">
+            <span class="proj-dot"></span>
+            01 · Java Desktop App
+            <span class="proj-badge">Featured</span>
+          </div>
+          <div class="proj-title">Secure Student Management System</div>
+          <div class="proj-desc">
+            A full-featured Java Swing desktop application with role-based secure login, complete CRUD operations
+            on student records, and a live MySQL backend via JDBC. Built for real institutional use — not a toy project.
+            Designed with security-first principles matching my Cyber Security degree.
+          </div>
+          <div class="proj-tags">
+            <span class="tag">Java</span><span class="tag">Swing</span>
+            <span class="tag">JDBC</span><span class="tag">MySQL</span><span class="tag">Secure Auth</span><span
+              class="tag">OOP</span>
+          </div>
+          <a href="https://github.com/neev21-alt/Student-Management-System" target="_blank" rel="noopener noreferrer"
+            class="proj-link" aria-label="View on GitHub">
+            View on GitHub →
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card proj-card tilt">
+          <div class="proj-num">
+            <span class="proj-dot"></span>
+            02 · Security Tool
+          </div>
+          <div class="proj-title">Bot Detection Evaluator</div>
+          <div class="proj-desc">
+            Python CLI tool rebuilt to industry standards — async processing pipeline, external JSON config,
+            automated test suite, and professional structured logging. Packaged as a proper Python module.
+          </div>
+          <div class="proj-tags">
+            <span class="tag">Python</span><span class="tag">Async</span>
+            <span class="tag">Security</span><span class="tag">Testing</span><span class="tag">CLI</span>
+          </div>
+          <a href="https://github.com/neev21-alt" target="_blank" rel="noopener noreferrer" class="proj-link">View on
+            GitHub →</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card proj-card tilt">
+          <div class="proj-num">
+            <span class="proj-dot"></span>
+            03 · Frontend
+          </div>
+          <div class="proj-title">CodeSprint Internship — 4 Client Projects</div>
+          <div class="proj-desc">
+            Shipped responsive web interfaces for real clients during my 2025 internship — interactive components,
+            cross-device layouts, and full Git version control throughout.
+          </div>
+          <div class="proj-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span>
+            <span class="tag">JavaScript</span><span class="tag">GitHub</span><span class="tag">Responsive</span>
+          </div>
+          <a href="https://github.com/neev21-alt" target="_blank" rel="noopener noreferrer" class="proj-link">View on
+            GitHub →</a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card proj-card tilt">
+          <div class="proj-num">
+            <span class="proj-dot"></span>
+            04 · Portfolio
+          </div>
+          <div class="proj-title">This Portfolio Website</div>
+          <div class="proj-desc">
+            Designed and built from scratch — custom cursor, 3D tilt cards, gradient animations, scroll-driven reveals,
+            infinite marquee, and full mobile responsiveness. No frameworks, pure HTML/CSS/JS.
+          </div>
+          <div class="proj-tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span><span class="tag">Animations</span>
+          </div>
+          <a href="https://github.com/neev21-alt/Portfolio" target="_blank" rel="noopener noreferrer"
+            class="proj-link">View Source →</a>
+        </div>
+
+      </div>
+    </section>
   </div>
-</section>
 
-<section class="section">
-  <h2>Education & Certifications</h2>
-  <p><strong>B.Tech – Cyber Security</strong> (2024–2028)</p>
-  <p>Shah & Anchor Kutchhi Engineering College | CGPA: 8.35</p>
-  <br />
-  <p><strong>CyberPeace First Responders Training (2025)</strong></p>
-  <p><strong>C Programming – IIT Bombay (92.5%)</strong></p>
-</section>
+  <div class="divider"></div>
 
-<footer>
-  <p class="footer-title">Let’s build something together.</p>
-  <p>
-    <a href="mailto:neev.savla24@sakec.ac.in">Email</a> ·
-    <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank">LinkedIn</a> ·
-    <a href="https://github.com/neev21-alt" target="_blank">GitHub</a>
-  </p>
-</footer>
+  <!-- ══════════════ EXPERIENCE ══════════════ -->
+  <div class="container" id="experience">
+    <section>
+      <div class="reveal">
+        <div class="sec-eye">Experience</div>
+        <div class="sec-head">Where I've <span>worked</span></div>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-dot"></div>
+          </div>
+          <div class="card tl-card tilt">
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Frontend Developer Intern</div>
+                <div class="tl-company">CodeSprint Tech</div>
+              </div>
+              <div class="tl-date">2025</div>
+            </div>
+            <ul class="tl-list">
+              <li>Built and shipped responsive web pages for real clients using HTML, CSS, and JavaScript</li>
+              <li>Implemented interactive UI components improving usability across 4+ delivered projects</li>
+              <li>Managed codebase with Git and GitHub, following version control best practices throughout</li>
+              <li>Collaborated on frontend architecture and shipped under real project deadlines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-<script src="script.js"></script>
+  <div class="divider"></div>
+
+  <!-- ══════════════ EDUCATION ══════════════ -->
+  <div class="container" id="education">
+    <section>
+      <div class="reveal">
+        <div class="sec-eye">Education & Certifications</div>
+        <div class="sec-head">How I've <span>grown</span></div>
+      </div>
+      <div class="edu-grid stagger reveal">
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-title">B.Tech — Cyber Security Engineering</div>
+          <div class="edu-inst">Shah &amp; Anchor Kutchhi Engineering College<br>Mumbai · 2024 – 2028</div>
+          <span class="pill-accent pill">CGPA 9.2</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">📜</div>
+          <div class="edu-title">C Programming</div>
+          <div class="edu-inst">IIT Bombay<br>National Online Certification</div>
+          <span class="pill-accent pill">92.5% Score</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">🔐</div>
+          <div class="edu-title">CyberPeace First Responders Training</div>
+          <div class="edu-inst">CyberPeace Foundation<br>2025</div>
+          <span class="pill" style="background:rgba(74,222,128,0.08);color:var(--green);border-color:rgba(74,222,128,0.2)">Certified</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">🐍</div>
+          <div class="edu-title">Python 3.4.3 Training</div>
+          <div class="edu-inst">IIT Bombay — Spoken Tutorial<br>EduPyramids, SINE · March 2026</div>
+          <span class="pill-accent pill">90% Score</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">🌐</div>
+          <div class="edu-title">Operating Systems Basics</div>
+          <div class="edu-inst">Cisco Networking Academy<br>Oct 2025</div>
+          <span class="pill" style="background:rgba(74,222,128,0.08);color:var(--green);border-color:rgba(74,222,128,0.2)">Certified</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">📡</div>
+          <div class="edu-title">CCNA: Introduction to Networks</div>
+          <div class="edu-inst">Cisco Networking Academy<br>Oct 2025</div>
+          <span class="pill" style="background:rgba(74,222,128,0.08);color:var(--green);border-color:rgba(74,222,128,0.2)">Certified</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">🌱</div>
+          <div class="edu-title">Living with Climate Change &amp; Water Management</div>
+          <div class="edu-inst">UNICEF · CEE<br>Jan 2025</div>
+          <span class="pill" style="background:rgba(74,222,128,0.08);color:var(--green);border-color:rgba(74,222,128,0.2)">Certified</span>
+        </div>
+
+        <div class="card edu-card tilt">
+          <div class="edu-icon">📄</div>
+          <div class="edu-title">Resume Building Bootcamp</div>
+          <div class="edu-inst">LetsUpgrade<br>Oct 2025</div>
+          <span class="pill-accent pill">Completed</span>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <div class="container" id="contact">
+    <section>
+      <div class="card contact-card tilt reveal">
+        <h2>Let's build something <span class="gradient-text">great.</span></h2>
+        <p>Open to internships, freelance projects, and collaborations. Based in Mumbai — remote-ready.</p>
+        <div class="contact-actions">
+          <a href="mailto:neev.savla24@sakec.ac.in" class="btn-primary" aria-label="Send email">Send Email →</a>
+          <a href="resume.html" target="_blank" target="_blank" class="btn-ghost" aria-label="Download resume">Resume ↗</a>
+          <a href="https://github.com/neev21-alt" target="_blank" rel="noopener noreferrer" class="btn-ghost"
+            aria-label="GitHub">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank" rel="noopener noreferrer"
+            class="btn-ghost" aria-label="LinkedIn">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-left">
+      <span>Neev Savla</span> · designed &amp; built from scratch · Mumbai 2025
+    </div>
+    <div class="footer-links">
+      <a href="mailto:neev.savla24@sakec.ac.in">Email</a>
+      <a href="https://github.com/neev21-alt" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/neev-savla-bb09b632b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </footer>
+  <script src="script.js" defer></script>
 </body>
+
 </html>

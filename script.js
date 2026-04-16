@@ -1,7 +1,160 @@
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(link.getAttribute('href'))
-      .scrollIntoView({ behavior: 'smooth' });
-  });
-});
+﻿/* ─── Custom Cursor ─── */
+    (function () {
+      const dot = document.getElementById('cur-dot');
+      const ring = document.getElementById('cur-ring');
+      let rx = 0, ry = 0;
+
+      document.addEventListener('mousemove', e => {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+        // ring follows with slight lag via lerp
+        rx += (e.clientX - rx) * 0.12;
+        ry += (e.clientY - ry) * 0.12;
+      });
+
+      function lerp() {
+        rx += (parseFloat(dot.style.left) - rx) * 0.14;
+        ry += (parseFloat(dot.style.top) - ry) * 0.14;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(lerp);
+      }
+      lerp();
+    })();
+
+    /* ─── Scroll Reveal ─── */
+    (function () {
+      const revEls = document.querySelectorAll('.reveal, .stagger');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revEls.forEach(el => obs.observe(el));
+    })();
+
+    /* ─── Scroll Progress Bar ─── */
+    (function () {
+      const bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', () => {
+        const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    })();
+
+    /* ─── Back To Top ─── */
+    (function () {
+      const btn = document.getElementById('back-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 450);
+      }, { passive: true });
+    })();
+
+    /* ─── Active Nav on Scroll ─── */
+    (function () {
+      const nav = document.getElementById('main-nav');
+      const links = document.querySelectorAll('.nav-links a');
+      const ids = ['home', 'about', 'projects', 'experience', 'education', 'contact'];
+
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        let current = '';
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && window.scrollY >= el.offsetTop - 120) current = id;
+        });
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+      }, { passive: true });
+    })();
+
+    /* ─── Hamburger Menu ─── */
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+    });
+    function closeDrawer() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      drawer.setAttribute('aria-hidden', true);
+    }
+
+    /* ─── 3D Card Tilt ─── */
+    (function () {
+      document.querySelectorAll('.tilt').forEach(card => {
+        const MAX_TILT = 6;
+
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const rx = ((e.clientY - cy) / (r.height / 2)) * -MAX_TILT;
+          const ry = ((e.clientX - cx) / (r.width / 2)) * MAX_TILT;
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+          card.style.transition = 'transform 0.08s linear';
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+          card.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1)';
+        });
+      });
+    })();
+
+    /* ─── Counter Animation ─── */
+    (function () {
+      const counters = document.querySelectorAll('.stat-val[data-count]');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const isInt = Number.isInteger(target);
+          const dur = 1600;
+          let start;
+
+          function step(ts) {
+            if (!start) start = ts;
+            const progress = Math.min((ts - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const val = target * eased;
+            el.textContent = (isInt ? Math.floor(val) : val.toFixed(2)) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = (isInt ? target : target.toFixed(2)) + suffix;
+          }
+          requestAnimationFrame(step);
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => obs.observe(c));
+    })();
+
+    /* ─── Hero Typewriter Subtitle Cycle ─── */
+    (function () {
+      const desc = document.querySelector('.hero-desc');
+      const lines = [
+        '<strong>Cyber Security Engineering student at SAKEC.</strong> Building clean interfaces, secure desktop systems, and scalable applications — with a focus on code quality from day one.',
+        '<strong>Frontend & Java Developer.</strong> Turning ideas into responsive UIs and secure Java applications — backed by a real internship and real shipped projects.',
+        '<strong>Security-minded builder.</strong> B.Tech Cyber Security student who doesn\'t just write code that works — but code that holds up when things go wrong.',
+      ];
+      let idx = 0;
+      setInterval(() => {
+        desc.style.opacity = '0';
+        desc.style.transform = 'translateY(8px)';
+        desc.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        setTimeout(() => {
+          idx = (idx + 1) % lines.length;
+          desc.innerHTML = lines[idx];
+          desc.style.opacity = '1';
+          desc.style.transform = 'translateY(0)';
+        }, 420);
+      }, 5000);
+    })();
