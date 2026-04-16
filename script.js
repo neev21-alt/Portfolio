@@ -1,4 +1,4 @@
-﻿/* ─── Custom Cursor ─── */
+/* ─── Custom Cursor ─── */
     (function () {
       const dot = document.getElementById('cur-dot');
       const ring = document.getElementById('cur-ring');
@@ -73,18 +73,40 @@
     /* ─── Hamburger Menu ─── */
     const hamburger = document.getElementById('hamburger');
     const drawer = document.getElementById('drawer');
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      drawer.classList.toggle('open', open);
-      hamburger.setAttribute('aria-expanded', open);
-      drawer.setAttribute('aria-hidden', !open);
+    
+    function toggleDrawer() {
+      const isOpening = !hamburger.classList.contains('open');
+      hamburger.classList.toggle('open', isOpening);
+      drawer.classList.toggle('open', isOpening);
+      hamburger.setAttribute('aria-expanded', isOpening);
+      drawer.setAttribute('aria-hidden', !isOpening);
+      
+      // Prevent scrolling when menu is open
+      document.body.style.overflow = isOpening ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleDrawer();
     });
+
     function closeDrawer() {
       hamburger.classList.remove('open');
       drawer.classList.remove('open');
       hamburger.setAttribute('aria-expanded', false);
       drawer.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
     }
+
+    // Close on click outside (backdrop effect)
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) closeDrawer();
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
 
     /* ─── 3D Card Tilt ─── */
     (function () {

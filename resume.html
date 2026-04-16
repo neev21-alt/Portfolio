@@ -47,11 +47,13 @@
   .wrap{display:flex;justify-content:center;padding:64px 12px 20px}
 
   .resume{
-    width:210mm;
+    width:100%;
+    max-width:210mm;
     background:#fff;
     box-shadow:0 1px 30px rgba(0,0,0,.15);
     padding:34px 42px 36px;
     display:flex;flex-direction:column;
+    min-height:296mm;
   }
 
   .hd{margin-bottom:13px;padding-bottom:12px;border-bottom:2.5px solid #111}
@@ -186,13 +188,31 @@
     border:1px solid #e0e0e0;
   }
 
+  @media (max-width: 768px) {
+    .bar { padding: 10px 15px; flex-wrap: wrap; text-align: center; }
+    .bar span { display: none; }
+    .wrap { padding: 50px 0 0; }
+    .resume { padding: 1.5rem; box-shadow: none; border-radius: 0; }
+    .hd-row { flex-direction: column; align-items: center; text-align: center; }
+    .hd-contact { align-items: center; text-align: center; margin-top: 10px; }
+    .bottom { grid-template-columns: 1fr; gap: 20px; }
+    .sk-table td:first-child { width: 60px; font-size: 6.5pt; }
+    .hd-name { font-size: 20pt; }
+    .exp-top { flex-direction: column; gap: 2px; }
+    .pj-head { flex-direction: column; gap: 4px; }
+    .pj-tag { align-self: flex-start; }
+  }
+
   @media print{
     body{background:#fff}
     .bar{display:none!important}
     .wrap{padding:0}
-    .resume{box-shadow:none;width:100%;padding:10mm 14mm}
+    .resume{box-shadow:none;width:100%;padding:10mm 14mm;min-height:auto;}
     .hd-contact a{color:#444}
     @page{size:A4;margin:0}
+    .hd-row { flex-direction: row; align-items: flex-end; text-align: left; }
+    .hd-contact { align-items: flex-end; text-align: right; }
+    .bottom { grid-template-columns: 175px 1fr; }
   }
 </style>
 </head>
