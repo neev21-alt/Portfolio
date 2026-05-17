@@ -159,24 +159,4 @@
       counters.forEach(c => obs.observe(c));
     })();
 
-    /* ─── Hero Typewriter Subtitle Cycle ─── */
-    (function () {
-      const desc = document.querySelector('.hero-desc');
-      const lines = [
-        '<strong>Cyber Security Engineering student at SAKEC.</strong> Building clean interfaces, secure desktop systems, and scalable applications — with a focus on code quality from day one.',
-        '<strong>Frontend & Java Developer.</strong> Turning ideas into responsive UIs and secure Java applications — backed by a real internship and real shipped projects.',
-        '<strong>Security-minded builder.</strong> B.Tech Cyber Security student who doesn\'t just write code that works — but code that holds up when things go wrong.',
-      ];
-      let idx = 0;
-      setInterval(() => {
-        desc.style.opacity = '0';
-        desc.style.transform = 'translateY(8px)';
-        desc.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        setTimeout(() => {
-          idx = (idx + 1) % lines.length;
-          desc.innerHTML = lines[idx];
-          desc.style.opacity = '1';
-          desc.style.transform = 'translateY(0)';
-        }, 420);
-      }, 5000);
-    })();
+
