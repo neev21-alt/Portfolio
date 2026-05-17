@@ -1,382 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
-<title>Neev Savla — Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-
-  body{
-    font-family:'Inter',sans-serif;
-    background:#c8c8c8;
-    color:#1a1a1a;
-    line-height:1.42;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  .bar{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    display:flex;align-items:center;justify-content:center;gap:16px;
-    padding:12px 24px;
-    background:#111;border-bottom:1px solid #333;
-  }
-  .bar span{color:#888;font-size:.82rem;font-weight:500}
-  .bar span b{color:#fff}
-  .bar-btns { display:flex; gap:10px; align-items:center; }
-  .btn-dl{
-    display:inline-flex;align-items:center;gap:7px;
-    padding:8px 22px;border-radius:6px;border:none;
-    background:#2563eb;color:#fff;
-    font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;
-    cursor:pointer;transition:all .2s;text-decoration:none;
-  }
-  .btn-dl:hover{background:#1d4ed8;transform:translateY(-1px)}
-  .btn-back{
-    display:inline-flex;align-items:center;gap:7px;
-    padding:8px 18px;border-radius:6px;border:1px solid #444;
-    background:transparent;color:#aaa;
-    font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;
-    cursor:pointer;transition:all .2s;text-decoration:none;
-  }
-  .btn-back:hover{border-color:#888;color:#fff}
-
-  .wrap{display:flex;justify-content:center;padding:64px 12px 20px}
-
-  .resume{
-    width:100%;
-    max-width:210mm;
-    background:#fff;
-    box-shadow:0 1px 30px rgba(0,0,0,.15);
-    padding:34px 42px 36px;
-    display:flex;flex-direction:column;
-    min-height:296mm;
-  }
-
-  .hd{margin-bottom:13px;padding-bottom:12px;border-bottom:2.5px solid #111}
-  .hd-row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-  .hd-name{font-size:24pt;font-weight:900;color:#000;letter-spacing:-.6px;line-height:1}
-  .hd-sub{font-size:8.5pt;font-weight:600;color:#555;margin-top:4px;letter-spacing:.8px}
-  .hd-contact{
-    display:flex;flex-direction:column;align-items:flex-end;gap:2px;
-    font-size:7.8pt;color:#444;font-weight:500;text-align:right;
-  }
-  .hd-contact span{display:flex;align-items:center;gap:5px}
-  .hd-contact i{font-size:6pt;color:#2563eb;width:10px;text-align:center;flex-shrink:0}
-  .hd-contact a{color:#444;text-decoration:none}
-
-  .summary{
-    font-size:8.4pt;color:#333;line-height:1.65;
-    margin-bottom:13px;
-    padding-bottom:12px;
-    border-bottom:1px solid #e0e0e0;
-  }
-  .summary b{color:#000;font-weight:800}
-
-  .sec{margin-bottom:12px}
-  .sec:last-child{margin-bottom:0}
-  .sec-h{
-    font-size:7.8pt;font-weight:800;
-    text-transform:uppercase;letter-spacing:2.5px;
-    color:#111;
-    margin-bottom:7px;
-    padding-bottom:4px;
-    border-bottom:1.5px solid #111;
-  }
-
-  .sk-table{width:100%;border-collapse:collapse}
-  .sk-table tr{vertical-align:top}
-  .sk-table td{padding:2px 0;font-size:7.8pt;line-height:1.55}
-  .sk-table td:first-child{
-    width:76px;font-weight:700;color:#2563eb;
-    font-size:7.2pt;text-transform:uppercase;letter-spacing:.8px;
-    padding-right:12px;padding-top:3px;
-  }
-  .sk-table td:last-child{color:#333;font-weight:500}
-  .sk-table td:last-child b{color:#111;font-weight:700}
-  .sk-table tr+tr td:first-child{border-top:1px solid #f0f0f0}
-
-  .exp{margin-bottom:9px}
-  .exp:last-child{margin-bottom:0}
-  .exp-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-  .exp-role{font-size:9.2pt;font-weight:800;color:#111}
-  .exp-date{
-    font-size:7pt;font-weight:700;color:#555;
-    white-space:nowrap;letter-spacing:.3px;
-  }
-  .exp-org{font-size:8pt;font-weight:700;color:#2563eb;margin:1px 0 3px}
-  .exp ul{list-style:none;padding:0}
-  .exp li{
-    font-size:7.8pt;color:#444;line-height:1.6;
-    padding-left:11px;position:relative;margin-bottom:1px;
-  }
-  .exp li::before{
-    content:'';position:absolute;left:0;top:6px;
-    width:3.5px;height:3.5px;border-radius:50%;
-    background:#2563eb;opacity:.55;
-  }
-  .exp li b{color:#111;font-weight:700}
-
-  .pj{margin-bottom:7px}
-  .pj:last-child{margin-bottom:0}
-  .pj-head{display:flex;align-items:baseline;gap:8px;margin-bottom:1px}
-  .pj-name{font-size:9pt;font-weight:900;color:#000;letter-spacing:-.2px}
-  .pj-tag{
-    font-size:5.8pt;font-weight:800;
-    padding:1.5px 6px;border-radius:2px;
-    background:#111;color:#fff;
-    text-transform:uppercase;letter-spacing:.8px;
-    white-space:nowrap;
-  }
-  .pj-purpose{font-size:7.2pt;color:#888;font-style:italic;margin-bottom:1px;line-height:1.45}
-  .pj-desc{font-size:7.6pt;color:#555;line-height:1.55}
-  .pj-desc b{color:#333;font-weight:700}
-  .pj-tech{
-    font-size:6.5pt;font-weight:600;color:#2563eb;
-    margin-top:2px;letter-spacing:.3px;
-  }
-  .pj-impact{font-size:7.2pt;color:#111;font-weight:700;margin-top:1px}
-  .pj-impact span{color:#2563eb}
-
-  .bottom{
-    margin-top:auto;
-    display:grid;
-    grid-template-columns:175px 1fr;
-    gap:0 26px;
-    padding-top:11px;
-    border-top:1px solid #e0e0e0;
-    padding-bottom:10px;
-  }
-  .edu-degree{font-size:8.8pt;font-weight:800;color:#111}
-  .edu-school{font-size:7.4pt;color:#666;line-height:1.45;margin-top:1px}
-  .edu-gpa{
-    display:inline-block;font-size:6.8pt;font-weight:800;
-    padding:2px 7px;border-radius:2px;
-    background:#111;color:#fff;
-    margin-top:3px;letter-spacing:.3px;
-  }
-  .lang-inline{
-    display:flex;flex-wrap:wrap;gap:4px 12px;
-    font-size:7.5pt;color:#444;font-weight:500;
-  }
-  .lang-inline span{color:#111;font-weight:700}
-
-  .cert-item{
-    font-size:7.5pt;color:#444;line-height:1.55;
-    padding-left:10px;position:relative;margin-bottom:2px;
-  }
-  .cert-item:last-child{margin-bottom:0}
-  .cert-item::before{
-    content:'';position:absolute;left:0;top:5.5px;
-    width:3.5px;height:3.5px;border-radius:1px;
-    background:#111;opacity:.35;
-  }
-  .cert-item b{color:#111;font-weight:700}
-  .cert-sub{color:#888;font-weight:400;font-size:6.8pt}
-
-  .int-row{
-    display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;
-    padding-top:5px;border-top:1px solid #f0f0f0;
-  }
-  .int-chip{
-    font-size:6.5pt;font-weight:600;
-    padding:2px 8px;border-radius:3px;
-    background:#f5f5f5;color:#333;
-    border:1px solid #e0e0e0;
-  }
-
-  @media (max-width: 768px) {
-    .bar { padding: 10px 15px; flex-wrap: wrap; text-align: center; }
-    .bar span { display: none; }
-    .wrap { padding: 50px 0 0; }
-    .resume { padding: 1.5rem; box-shadow: none; border-radius: 0; }
-    .hd-row { flex-direction: column; align-items: center; text-align: center; }
-    .hd-contact { align-items: center; text-align: center; margin-top: 10px; }
-    .bottom { grid-template-columns: 1fr; gap: 20px; }
-    .sk-table td:first-child { width: 60px; font-size: 6.5pt; }
-    .hd-name { font-size: 20pt; }
-    .exp-top { flex-direction: column; gap: 2px; }
-    .pj-head { flex-direction: column; gap: 4px; }
-    .pj-tag { align-self: flex-start; }
-  }
-
-  @media print{
-    body{background:#fff}
-    .bar{display:none!important}
-    .wrap{padding:0}
-    .resume{box-shadow:none;width:100%;padding:10mm 14mm;min-height:auto;}
-    .hd-contact a{color:#444}
-    @page{size:A4;margin:0}
-    .hd-row { flex-direction: row; align-items: flex-end; text-align: left; }
-    .hd-contact { align-items: flex-end; text-align: right; }
-    .bottom { grid-template-columns: 175px 1fr; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neev Savla - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text: #1a1a1a;
+            --secondary-text: #4a4a4a;
+            --line-color: #000;
+            --margin: 35px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary-text);
+            line-height: 1.35;
+            background: #fff;
+        }
+        .a4-page {
+            width: 794px;
+            padding: var(--margin);
+            margin: 0 auto;
+        }
+        header { margin-bottom: 20px; }
+        h1 { font-size: 30px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; letter-spacing: 0.5px; }
+        .role { font-size: 15px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .contact-info { font-size: 11px; color: var(--secondary-text); margin-bottom: 12px; }
+        .header-line { border-bottom: 2.5px solid var(--line-color); margin-bottom: 18px; }
+        
+        section { margin-bottom: 18px; }
+        h2 { font-size: 14px; font-weight: 700; text-transform: uppercase; border-bottom: 1.5px solid var(--line-color); padding-bottom: 3px; margin-bottom: 10px; }
+        
+        .summary p { font-size: 12px; text-align: justify; color: var(--secondary-text); }
+        
+        .item { margin-bottom: 10px; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .item-title { font-size: 13px; font-weight: 700; }
+        .date { font-size: 11px; font-weight: 600; color: #333; }
+        .sub-title { font-size: 11.5px; color: var(--secondary-text); font-style: italic; margin-bottom: 3px; }
+        
+        .project-link { display: block; font-size: 11px; color: #0000ee; text-decoration: underline; margin-top: -2px; margin-bottom: 4px; font-weight: 600; }
+        
+        ul { list-style-type: disc; margin-left: 18px; font-size: 11.5px; color: var(--secondary-text); }
+        li { margin-bottom: 2px; }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 11.5px;
+            color: var(--secondary-text);
+        }
+        .skills-item { margin-bottom: 4px; }
+        .skills-item strong { color: var(--primary-text); width: 85px; display: inline-block; }
+        
+        .additional-info div { margin-bottom: 4px; font-size: 11.5px; color: var(--secondary-text); }
+        .additional-info strong { color: var(--primary-text); }
+        
+        a { color: inherit; text-decoration: none; }
+    </style>
 </head>
 <body>
+    <div class="a4-page">
+        <header>
+            <h1>Neev Savla</h1>
+            <div class="role">CYBER SECURITY ENGINEERING STUDENT  |  FULL-STACK DEVELOPER</div>
+            <div class="contact-info">
+                Mumbai, India  |  9011713499  |  <a href="mailto:neev.savla24@sakec.ac.in">neev.savla24@sakec.ac.in</a>  |  github.com/neev21-alt  |  linkedin.com/in/neev-savla
+            </div>
+            <div class="header-line"></div>
+        </header>
 
-<div class="bar">
-  <span><b>Neev Savla</b> — One-page resume</span>
-  <div class="bar-btns">
-    <a href="index.html" class="btn-back">← Portfolio</a>
-    <button class="btn-dl" onclick="window.print()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Save as PDF
-    </button>
-  </div>
-</div>
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>Cyber Security Engineering student (CGPA 9.2/10) at SAKEC Mumbai focused on cybersecurity and software development. Built full-stack web applications, AI-powered civic tools, and an ML-based deepfake detection pipeline. Seeking internships in software engineering, full-stack development, or cybersecurity engineering.</p>
+        </section>
 
-<div class="wrap">
-<div class="resume">
+        <section>
+            <h2>Professional Experience</h2>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Frontend Developer Intern, CodeSprint Tech</div>
+                    <div class="date">Sept 2025 – Oct 2025</div>
+                </div>
+                <ul>
+                    <li>Built responsive web interfaces for 4+ client projects using HTML, CSS, and JS, resolving cross-device rendering issues.</li>
+                    <li>Developed a shared UI component library that reduced redundant CSS and cut development build times across projects.</li>
+                    <li>Delivered clean, maintainable code within Agile sprint cycles using structured Git branching and PR workflows.</li>
+                </ul>
+            </div>
+        </section>
 
-  <div class="hd">
-    <div class="hd-row">
-      <div>
-        <div class="hd-name">NEEV SAVLA</div>
-        <div class="hd-sub">Cybersecurity Engineering · AI &amp; Full-Stack Development</div>
-      </div>
-      <div class="hd-contact">
-        <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
-        <span><i class="fa-solid fa-phone"></i> 9011713499</span>
-        <span><i class="fa-solid fa-envelope"></i> neev.savla24@sakec.ac.in</span>
-        <span><i class="fa-brands fa-github"></i> github.com/neev21-alt</span>
-        <span><i class="fa-brands fa-linkedin"></i> linkedin.com/in/neev-savla</span>
-      </div>
+        <section>
+            <h2>Projects</h2>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">PhishPulse — Cybersecurity Simulation Platform</div>
+                    <div class="date">Full-Stack</div>
+                </div>
+                <div class="sub-title">React, TypeScript, Python FastAPI, TailwindCSS, Framer Motion, Zustand</div>
+                <ul>
+                    <li>Built full-stack cybersecurity awareness platform with React/TypeScript frontend and Python FastAPI backend.</li>
+                    <li>Designed interactive simulation interface with 20+ connected nodes to visualize phishing attack scenarios.</li>
+                    <li>Integrated gamified mission progression system for structured cybersecurity training workflows.</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Election Guide India — Civic Tech Portal</div>
+                    <div class="date">Deployed · Vercel</div>
+                </div>
+                <a href="https://election-guide-india.vercel.app" class="project-link">election-guide-india.vercel.app</a>
+                <div class="sub-title">React, Gemini 2.5 Flash, Web Speech API, Web Audio API, HTML5 Canvas</div>
+                <ul>
+                    <li>Built and deployed multilingual AI election assistant using Gemini 2.5 Flash (English/Hindi) on Vercel.</li>
+                    <li>Implemented interactive EVM & VVPAT simulator with Web Audio API beeps and 7-second paper trail.</li>
+                    <li>Integrated voice input/output via Web Speech API — submitted to Google Build with AI Hackathon (Apr 2026).</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Student Management System — Secure CRUD App</div>
+                    <div class="date">Java/MySQL</div>
+                </div>
+                <div class="sub-title">Java, MySQL, Swing, JDBC</div>
+                <ul>
+                    <li>Built role-based authentication using JDBC preventing unauthorized access to student and staff institutional records.</li>
+                    <li>Mitigated SQL injection risk using parameterized JDBC queries across all DB operations.</li>
+                    <li>Enforced server-side input validation for reliable record integrity and maintained normalized database schemas.</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">Deepfake Detection Pipeline</div>
+                    <div class="date">Python/ML</div>
+                </div>
+                <div class="sub-title">Python, ML Data Pipelines, Classification Models</div>
+                <ul>
+                    <li>Built Python pipeline to clean, crop, and extract features from video datasets for deepfake model training.</li>
+                    <li>Trained classification models to identify manipulated media, improving preprocessing efficiency for large datasets.</li>
+                    <li>Evaluated classification performance on manipulated media datasets — submitted to Intel AI Festival 2025.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div>
+                    <div class="skills-item"><strong>Languages:</strong> JS, TS, Python, Java, SQL</div>
+                    <div class="skills-item"><strong>Frontend:</strong> React, Vite, TailwindCSS, Framer Motion</div>
+                    <div class="skills-item"><strong>Backend:</strong> Node.js, Express, FastAPI, JWT</div>
+                </div>
+                <div>
+                    <div class="skills-item"><strong>Databases:</strong> MySQL, Schema Design</div>
+                    <div class="skills-item"><strong>APIs:</strong> Gemini API, Web Speech API, Web Audio API</div>
+                    <div class="skills-item"><strong>Tools:</strong> Git, GitHub, Vercel, Zustand</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <div class="item-title">B.Tech — Cyber Security Engineering | Shah & Anchor Kutchhi Eng. College, Mumbai</div>
+                    <div class="date">2024 – 2028 (Exp.)</div>
+                </div>
+                <div class="sub-title">CGPA: <strong>9.2 / 10</strong></div>
+            </div>
+        </section>
+
+        <section class="additional-info">
+            <h2>Additional Information</h2>
+            <div><strong>Certifications:</strong> CCNA: Intro to Networks (2025), CyberPeace First Responders (2025), OS Basics (Cisco).</div>
+            <div><strong>Awards:</strong> C Programming (92.5%) & Python Certification (90%) — IIT Bombay.</div>
+            <div><strong>Languages:</strong> English, Hindi, Marathi, Gujarati.</div>
+        </section>
     </div>
-  </div>
-
-  <p class="summary">
-    Cybersecurity undergraduate (CGPA 9.2) with hands-on experience building secure full-stack applications and AI-driven threat detection systems. Developed scalable projects using <b>Node.js</b> and <b>Python</b>, including a deepfake detection system. Skilled in authentication, secure coding, and vulnerability awareness. Seeking an internship to contribute to production-grade systems.
-  </p>
-
-  <div class="sec">
-    <div class="sec-h">Technical Skills</div>
-    <table class="sk-table">
-      <tr>
-        <td>Languages</td>
-        <td><b>Python</b>, <b>Java</b>, <b>JavaScript</b>, TypeScript, SQL</td>
-      </tr>
-      <tr>
-        <td>Backend</td>
-        <td><b>Node.js</b>, <b>Express.js</b>, Spring Boot, <b>REST APIs</b>, Authentication</td>
-      </tr>
-      <tr>
-        <td>Frontend</td>
-        <td>HTML, CSS, Responsive Web Design</td>
-      </tr>
-      <tr>
-        <td>AI / ML</td>
-        <td>Classification Models, Feature Engineering, Data Pipelines, Model Evaluation</td>
-      </tr>
-      <tr>
-        <td>Databases</td>
-        <td><b>MySQL</b> — CRUD, Query Optimization, Schema Design</td>
-      </tr>
-      <tr>
-        <td>Tools</td>
-        <td><b>Git</b>, <b>GitHub</b></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="sec">
-    <div class="sec-h">Experience</div>
-
-    <div class="exp">
-      <div class="exp-top">
-        <span class="exp-role">Frontend Developer Intern</span>
-        <span class="exp-date">Sept 2025 – Oct 2025</span>
-      </div>
-      <div class="exp-org">CodeSprint Tech</div>
-      <ul>
-        <li>Built responsive web interfaces for <b>4+ client projects</b> using <b>HTML</b>, <b>CSS</b>, and <b>JavaScript</b>, improving usability and cross-device performance</li>
-        <li>Implemented interactive UI components that <b>improved user engagement and reduced user friction</b></li>
-        <li>Followed <b>Agile practices</b> and contributed to production-level code with structured <b>Git workflows</b></li>
-      </ul>
-    </div>
-
-    <div class="exp">
-      <div class="exp-top">
-        <span class="exp-role">AI &amp; Software Developer — Independent</span>
-        <span class="exp-date">2025 – Present</span>
-      </div>
-      <div class="exp-org">Deepfake Detection System</div>
-      <ul>
-        <li>Developing an ML-based detection system with <b>high classification accuracy</b> to identify manipulated media</li>
-        <li>Designed <b>data preprocessing pipelines</b> handling large datasets, reducing processing time and improving efficiency</li>
-        <li>Applied secure coding and authentication to protect <b>model evaluation</b> integrity and pipeline access</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="sec-h">Projects</div>
-
-    <div class="pj">
-      <div class="pj-head">
-        <span class="pj-name">Student Management System</span>
-        <span class="pj-tag">Java + MySQL</span>
-      </div>
-      <div class="pj-purpose">Developed to replace vulnerable third-party tools with a secure institutional record management system.</div>
-      <p class="pj-desc">
-        Built a <b>Java Swing</b> desktop app with role-based auth via <b>JDBC</b> and full CRUD on a live <b>MySQL</b> backend. Implemented secure query design and input validation to prevent SQL injection.
-      </p>
-      <div class="pj-impact"><span>Impact:</span> Improved data reliability and reduced dependency on third-party tools.</div>
-      <div class="pj-tech">Java · Swing · JDBC · MySQL · Secure Auth · OOP</div>
-    </div>
-
-    <div class="pj">
-      <div class="pj-head">
-        <span class="pj-name">PhishPulse — Cybersecurity Simulation Platform</span>
-        <span class="pj-tag">React + FastAPI</span>
-      </div>
-      <div class="pj-purpose">A comprehensive cybersecurity simulation platform designed to educate users about phishing attacks through interactive modules.</div>
-      <p class="pj-desc">
-        Built a full-stack platform using <b>React</b>, <b>TypeScript</b>, and <b>TailwindCSS</b> on the frontend, with a <b>Python FastAPI</b> backend.
-      </p>
-      <div class="pj-impact"><span>Impact:</span> Improved user security awareness through live interactive simulations.</div>
-      <div class="pj-tech">React · TypeScript · Python FastAPI · TailwindCSS · Framer Motion</div>
-    </div>
-  </div>
-
-  <div class="bottom">
-
-    <div>
-      <div class="sec-h">Education</div>
-      <div class="edu-degree">B.Tech — Computer Engineering</div>
-      <div class="edu-school">Shah &amp; Anchor Kutchhi Eng. College, Mumbai<br>2024 – 2028 (Ongoing)</div>
-      <span class="edu-gpa">CGPA 9.2 / 10</span>
-
-      <div style="margin-top:9px">
-        <div class="sec-h">Languages</div>
-        <div class="lang-inline"><span>English</span> — Professional · <span>Hindi</span> — Native · <span>Marathi</span> — Fluent · <span>Gujarati</span> — Fluent</div>
-      </div>
-    </div>
-
-    <div>
-      <div class="sec-h">Certifications</div>
-      <div class="cert-item"><b>CCNA: Introduction to Networks</b> <span class="cert-sub">— Cisco Academy, 2025</span></div>
-      <div class="cert-item"><b>CyberPeace First Responders Training</b> <span class="cert-sub">— CyberPeace Foundation, 2025</span></div>
-      <div class="cert-item"><b>C Programming</b> <span class="cert-sub">— IIT Bombay, 92.5%</span></div>
-      <div class="cert-item"><b>Operating Systems Basics</b> <span class="cert-sub">— Cisco Academy, 2025</span></div>
-      <div class="cert-item"><b>Python 3.4.3 Training</b> <span class="cert-sub">— IIT Bombay, 90%</span></div>
-
-      <div class="int-row">
-        <span class="int-chip">AI &amp; ML</span>
-        <span class="int-chip">Network Security</span>
-        <span class="int-chip">Penetration Testing</span>
-        <span class="int-chip">System Design</span>
-        <span class="int-chip">Full-Stack Dev</span>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-</div>
-
 </body>
 </html>
