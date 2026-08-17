@@ -160,13 +160,22 @@
     })();
 
     /* ─── Certificate Lightbox ─── */
-    function openLightbox(src, label) {
-      const lb  = document.getElementById('cert-lightbox');
-      const img = document.getElementById('lb-img');
-      const lbl = document.getElementById('lb-label');
-      img.src   = src;
-      img.alt   = label;
+    function openLightbox(src, label, pdfUrl) {
+      const lb      = document.getElementById('cert-lightbox');
+      const img     = document.getElementById('lb-img');
+      const lbl     = document.getElementById('lb-label');
+      const pdfBtn  = document.getElementById('lb-pdf-link');
+      img.src       = src;
+      img.alt       = label;
       lbl.textContent = label;
+      
+      if (pdfUrl) {
+        pdfBtn.href = pdfUrl;
+        pdfBtn.style.display = 'inline-flex';
+      } else {
+        pdfBtn.style.display = 'none';
+      }
+      
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
