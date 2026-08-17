@@ -159,4 +159,46 @@
       counters.forEach(c => obs.observe(c));
     })();
 
+    /* ─── Certificate Lightbox ─── */
+    function openLightbox(src, label) {
+      const lb  = document.getElementById('cert-lightbox');
+      const img = document.getElementById('lb-img');
+      const lbl = document.getElementById('lb-label');
+      img.src   = src;
+      img.alt   = label;
+      lbl.textContent = label;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('cert-lightbox');
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        document.getElementById('lb-img').src = '';
+      }, 300);
+    }
+
+    function closeLightboxOnBackdrop(e) {
+      if (e.target === document.getElementById('cert-lightbox')) closeLightbox();
+    }
+
+    /* ESC key closes lightbox */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    /* Keyboard: Enter/Space activates cert frames */
+    document.querySelectorAll('.cert-frame[tabindex]').forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+
+
+
 
