@@ -57,7 +57,7 @@
     (function () {
       const nav = document.getElementById('main-nav');
       const links = document.querySelectorAll('.nav-links a');
-      const ids = ['home', 'about', 'projects', 'experience', 'education', 'contact'];
+      const ids = ['home', 'about', 'projects', 'building', 'experience', 'security', 'achievements', 'certifications', 'education', 'numbers', 'contact'];
 
       window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 60);
@@ -132,7 +132,7 @@
 
     /* ─── Counter Animation ─── */
     (function () {
-      const counters = document.querySelectorAll('.stat-val[data-count]');
+      const counters = document.querySelectorAll('.stat-val[data-count], .number-val[data-count]');
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (!e.isIntersecting) return;
